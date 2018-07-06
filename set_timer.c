@@ -14,7 +14,7 @@ struct timeval tv;
 
 void timer_cb(int fd, short event, void *argc)
 {
-    printf("timer wake up\n");
+    printf("shit, timer wake up\n");
     event_add(ev, &tv);    // reschedule timer
 }
 
@@ -22,13 +22,12 @@ int main(int argc, char **argv)
 {
     struct event_base *base = event_base_new();
 
-    tv.tv_sec = 5;
+    tv.tv_sec = 2;
     tv.tv_usec = 0;
-//    evtimer_new(&ev, timer_cb, NULL);
 
+//    evtimer_new(&ev, timer_cb, NULL);
     ev = event_new(base, -1, EV_PERSIST, timer_cb, NULL);
 
-//    event_base_set(base, ev);
 
     event_add(ev, &tv);
 
